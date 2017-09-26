@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
 
@@ -12,8 +12,6 @@ services:
       - "9300:9300"
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - elk
 
   logstash:
     build: logstash/
@@ -25,8 +23,6 @@ services:
       - "5000:5000"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - elk
     depends_on:
       - elasticsearch
 
@@ -37,12 +33,5 @@ services:
       - ./kibana/config/:/usr/share/kibana/config
     ports:
       - "5601:5601"
-    networks:
-      - elk
     depends_on:
       - elasticsearch
-
-networks:
-
-  elk:
-    driver: bridge
