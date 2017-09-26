@@ -28,7 +28,7 @@ services:
 
   kibana:
     build: kibana/
-    container_name: logstash
+    container_name: kibana
     volumes:
       - ./kibana/config/:/usr/share/kibana/config
     ports:
